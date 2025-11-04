@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arctic Sky - Exploratory Visualizations</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .vis-container {
+            margin: 40px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+        .vis-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #34495e;
+            margin-bottom: 10px;
+        }
+        svg {
+            display: block;
+            margin: 0 auto;
+        }
+        .axis {
+            font-size: 12px;
+        }
+        .axis-label {
+            font-size: 14px;
+            fill: #555;
+        }
+        .tooltip {
+            font-family: 'Arial', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Exploratory Visualizations: Arctic Sky Seasonal Changes</h1>
+        
+        <!-- Visualization 1: Seasonal Daylight Hours -->
+        <div class="vis-container">
+            <div class="vis-title">1. Seasonal Daylight Hours in the Arctic</div>
+            <div id="vis1"></div>
+        </div>
+
+        <!-- Visualization 2: Monthly Average Brightness -->
+        <div class="vis-container">
+            <div class="vis-title">2. Monthly Average Visible Imagery Brightness</div>
+            <div id="vis2"></div>
+        </div>
+
+        <!-- Visualization 3: Summer vs Winter Comparison -->
+        <div class="vis-container">
+            <div class="vis-title">3. Summer vs Winter: Daylight Hours Comparison</div>
+            <div id="vis3"></div>
+        </div>
+
+        <!-- Visualization 4: Temporal Heatmap -->
+        <div class="vis-container">
+            <div class="vis-title">4. Daylight Hours Heatmap by Month</div>
+            <div id="vis4"></div>
+        </div>
+
+        <!-- Visualization 5: Brightness Distribution by Season -->
+        <div class="vis-container">
+            <div class="vis-title">5. Satellite Imagery Brightness Distribution by Season</div>
+            <div id="vis5"></div>
+        </div>
+
+        <!-- Visualization 6: Polar Projection Concept -->
+        <div class="vis-container">
+            <div class="vis-title">6. Arctic Sky Conditions - Seasonal Patterns</div>
+            <div id="vis6"></div>
+        </div>
+    </div>
+
+    <script src="exploratory.js"></script>
+</body>
+</html>

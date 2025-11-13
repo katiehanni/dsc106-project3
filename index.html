@@ -268,34 +268,82 @@
 
         <section class="writeup" id="writeup">
             <h2>Design &amp; Process Notes</h2>
+        
             <div>
                 <h3>Design Rationale</h3>
-                <p>A single multi-line chart keeps every monitoring station in view while supporting focused comparison
-                   through filters. Month labels sit on a shared point scale so that users can concentrate on seasonal
-                   arcs, and a responsive color palette differentiates sites without overpowering the data. Dynamic
-                   axis scaling adapts to the current metric, keeping the story coherent whether we are looking at
-                   reflectance or daylight.</p>
+                <p>
+                    Our visualization goal was to make seasonal dynamics in the Arctic both comparable and continuous. 
+                    Because our data involved monthly values for two linked metrics — <em>surface brightness index</em> 
+                    and <em>daylight hours</em> — across five distinct sites, we needed a layout that emphasized temporal flow 
+                    while preserving regional contrast.
+                </p>
+                <p>
+                    We chose a <strong>multi-line chart</strong> with a shared time axis for several reasons:
+                </p>
+                <ul>
+                    <li><strong>Temporal coherence:</strong> A single horizontal axis allows users to intuitively follow the seasonal arc from January through December, reinforcing the cyclical nature of Arctic light and surface changes.</li>
+                    <li><strong>Comparative efficiency:</strong> Overlaying all sites in one coordinate system makes it easy to identify synchronized trends (like shared midsummer peaks) and regional deviations (such as Greenland’s persistent brightness plateau).</li>
+                    <li><strong>Compactness:</strong> With limited screen space, a combined plot avoids fragmentation that would come from separate small multiples.</li>
+                </ul>
+                <p>
+                    Additional encoding choices:
+                </p>
+                <ul>
+                    <li><strong>X-axis:</strong> Encodes months categorically to emphasize periodicity rather than exact duration.</li>
+                    <li><strong>Y-axis:</strong> Dynamically bound to the currently selected metric (brightness or daylight) to maintain interpretability without distortion.</li>
+                    <li><strong>Line color:</strong> Perceptually distinct and colorblind-safe palette to differentiate sites.</li>
+                    <li><strong>Line weight &amp; smoothing:</strong> Moderate stroke width and subtle smoothing highlight the seasonal rhythm without visual clutter.</li>
+                    <li><strong>Annotations &amp; summaries:</strong> Responsive textual summary updates beneath the chart, narrating current selections.</li>
+                </ul>
+                <p>
+                    We considered alternatives such as small multiples or dual-axis plots but found them less effective. 
+                    Small multiples fragmented comparisons, and dual axes risked misinterpretation due to differing scales. 
+                    The single multi-line chart combined with metric toggle provided the clearest and most flexible approach.
+                </p>
             </div>
+        
             <div>
                 <h3>Interaction Techniques</h3>
                 <ul>
-                    <li>Season toggles remap the horizontal domain to just the selected months for quick seasonal focus.</li>
-                    <li>Metric swap instantly rebinds the y-axis and legend, enabling rapid metric-to-metric contrasts.</li>
-                    <li>Site toggles manage comparison groups while the legend and summary update to echo active choices.</li>
-                    <li>Hover tooltips provide details-on-demand with site, region, and formatted metric values.</li>
+                    <li>Season toggles remap the horizontal domain to focus on Winter, Spring, Summer, or Fall for quick seasonal comparisons.</li>
+                    <li>Metric toggle rebinds the y-axis and legend between surface brightness and daylight hours, supporting cross-metric exploration.</li>
+                    <li>Site toggles allow selective comparisons; legend and narrative text update dynamically to reflect active stations.</li>
+                    <li>Hover tooltips provide details-on-demand for site, month, and exact metric values.</li>
+                    <li>Reset filters restore the full-year view with a single click.</li>
                 </ul>
             </div>
+        
             <div>
                 <h3>Data Processing</h3>
-                <p>We sampled NASA MODIS Terra MOD09GA surface reflectance and MOD10A1 snow cover products via
-                   NASA GIBS for 2023, extracting monthly averages for five Arctic monitoring sites. We computed
-                   daylight hours using astronomical day length formulas matched to site latitude and aggregated sea
-                   ice concentration from the MODIS-derived fractional snow/ice band.</p>
+                <p>
+                    We sourced NASA MODIS Terra data (MOD09GA and MOD10A1 products) for the Arctic via NASA GIBS. 
+                    Monthly averages were computed for each of the five sites. Surface brightness was derived from reflectance values, 
+                    and daylight hours were computed using astronomical formulas based on latitude. The data was cleaned, aggregated, 
+                    and structured into a tidy CSV format for D3 visualization.
+                </p>
+                <p>
+                    Challenges included ensuring temporal and spatial consistency and dealing with cloud coverage variations in the satellite imagery.
+                </p>
             </div>
+        
             <div>
                 <h3>Team Workflow</h3>
-                <p>Data wrangling: Amrutha (12 hours). Interaction design and D3 prototyping: Audrey (14 hours) and Katie (12 hours).
-                   Visual polish and narrative framing: Faline (8 hours). Integration and deployment: whole team (6 joint hours).</p>
+                <p>
+                    <strong>Data Wrangling:</strong> Amrutha (12 hours) — preprocessing raw MODIS imagery, computing monthly averages, 
+                    and deriving daylight hours.
+                </p>
+                <p>
+                    <strong>Interaction Design &amp; D3 Implementation:</strong> Audrey (14 hours) and Katie (12 hours) — building the multi-line chart, implementing metric toggles, hover tooltips, and responsive legends, and refining transitions and dynamic axes.
+                </p>
+                <p>
+                    <strong>Visual Polish &amp; Narrative Framing:</strong> Faline (8 hours) — adjusting colors, typography, annotations, and dynamic summaries to highlight seasonal patterns.
+                </p>
+                <p>
+                    <strong>Integration &amp; Deployment:</strong> All team members (6 joint hours) — combining code, debugging interactions, and deploying to GitHub Pages.
+                </p>
+                <p>
+                    Total effort: ~52 people-hours. The most time-intensive aspects were data wrangling from NASA GIBS and fine-tuning D3 interactivity for smooth, bug-free transitions.
+                </p>
             </div>
         </section>
     </main>
